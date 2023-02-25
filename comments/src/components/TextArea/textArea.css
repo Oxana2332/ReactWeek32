@@ -1,0 +1,13 @@
+.button {
+    background-color: rgb(255, 217, 0);
+    width: 25vw;
+    margin: auto 22px;
+    padding: 10px;
+    border-color: rgba(240, 248, 255, 0.034);
+    border-radius: 8px;
+}
+
+.textarea{
+    width: 25vw;
+    margin: 3px 20px;
+}
