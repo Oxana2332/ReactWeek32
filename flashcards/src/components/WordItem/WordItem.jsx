@@ -9,6 +9,10 @@ function WordItem({ item, editWordItem }) {
     const [valueTranscription, setValueTranscription] = useState('');
     const [valueRussian, setValueRussian] = useState('');
     const [valueTags, setValueTags] = useState('');
+    const [isValidValueEnglish, setIsValidValueEnglish] = useState(true);
+    const [isValidValueTranscription, setIsValidValueTranscription] = useState(true);
+    const [isValidValueRussian, setIsValidValueRussian] = useState(true);
+    const [isValidValueTags, setIsValidValueTags] = useState(true);
 
     useEffect(() => {
         setValueEnglish(english)
@@ -31,8 +35,14 @@ function WordItem({ item, editWordItem }) {
     }
 
     function saveWordItem() {
-        editWordItem(valueEnglish, valueTranscription, valueRussian, valueTags, id)
-        setOpenInput(!openInput)
+        setIsValidValueEnglish(valueEnglish !== '')
+        setIsValidValueTranscription(valueTranscription !== '')
+        setIsValidValueRussian(valueRussian !== '')
+        setIsValidValueTags(valueTags !== '')
+        if(!(valueEnglish === '' || valueTranscription === '' || valueRussian === '' || valueTags === '' )){
+            editWordItem(valueEnglish, valueTranscription, valueRussian, valueTags, id)
+            setOpenInput(!openInput)
+        } 
     }
 
     function cancelWordItem() {
@@ -41,15 +51,19 @@ function WordItem({ item, editWordItem }) {
         setValueTranscription(transcription)
         setValueRussian(russian)
         setValueTags(tags)
+        setIsValidValueEnglish(true)
+        setIsValidValueTranscription(true)
+        setIsValidValueRussian(true)
+        setIsValidValueTags(true)
     }
 
     return (
         <div>
             {openInput ? (<div className='wordItem'>
-                <input className='word_input' type="text" value={valueEnglish} onChange={handlerEnglish} />
-                <input className='word_input' type="text" value={valueTranscription} onChange={handlerTranscription} />
-                <input className='word_input' type="text" value={valueRussian} onChange={handlerRussian} />
-                <input className='word_input' type="text" value={valueTags} onChange={handlerTags} />
+                <input className={isValidValueEnglish? 'word_input' : 'word_input red'} type="text" value={valueEnglish} onChange={handlerEnglish} />
+                <input className={isValidValueTranscription? 'word_input' : 'word_input red'} type="text" value={valueTranscription} onChange={handlerTranscription} />
+                <input className={isValidValueRussian? 'word_input' : 'word_input red'} type="text" value={valueRussian} onChange={handlerRussian} />
+                <input className={isValidValueTags? 'word_input' : 'word_input red'} type="text" value={valueTags} onChange={handlerTags} />
                 <button className='button save' onClick={saveWordItem}></button>
                 <button className='button cancel' onClick={cancelWordItem}></button>
             </div>) : (

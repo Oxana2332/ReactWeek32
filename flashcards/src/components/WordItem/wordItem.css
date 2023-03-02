@@ -71,6 +71,10 @@
     text-align: center;
 }
 
+.red {
+    border-color: red;
+}
+
 .save {
     background-image: url("../../../public/assets/saveButton.svg");
     background-repeat: no-repeat;

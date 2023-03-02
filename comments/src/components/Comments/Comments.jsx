@@ -9,16 +9,19 @@ function Comments() {
     function handleSubmitNewText(e) {
         e.preventDefault()
         if(!newText) return;
-        comments.unshift(newText);
+        const text = newText.replace(/ххх|xxx|viagra/gi, "***")
+        comments.unshift(text);
         setNewText("");
     }
     
     return(
         <>
         <h1 className="title">Hi!!! How are you?</h1>
+        <div>
         {comments.map((item, index) => (
             <Out key={index} item={item}/>
         ))}
+        </div>
             <TextArea newText={newText} setNewText={setNewText} handleSubmit={handleSubmitNewText}/>
         </>
     )

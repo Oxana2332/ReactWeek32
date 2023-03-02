@@ -1,4 +1,4 @@
-.comment:focus {
+.comment:first-child {
     background-color: rgba(0, 98, 255, 0.555);
     padding: 1%;
     text-align: center;
